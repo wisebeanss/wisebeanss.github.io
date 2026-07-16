@@ -1,0 +1,51 @@
+@font-face {
+	font-family: "Google Sans";
+	src:url("fonts//GoogleSans_17pt-Regular.ttf");
+}
+* {
+	font-family: "Google Sans";
+}
+header {
+	display:flex;
+	flex-wrap:wrap;
+	background-color: #484e5a;
+}
+
+header > h1 {
+	margin:5px;
+	padding:30px 5px 30px 5px;
+	flex:100%;
+	text-align: center;
+}
+header > button {
+	font-size:1em;
+	width:200px;
+	height:50px;
+	border:0px;
+	flex:1;
+	background-color: #383e49;
+	color: #e8e8e8;
+	transition: background-color 0.3s ease
+	
+}
+header > button:hover {
+	background-color:rgb(74, 79, 92);
+}
+body {
+	margin:0px;
+	background-color: #202733;
+	color:#e8e8e8
+}
+p {
+	color: #d8d8d8;
+	padding:10px;
+}
+main {
+	display:flex;
+	padding-left:10px;
+	width:50%;
+}
+ul {
+	list-style-type: none;
+	padding-left:10px;
+}
