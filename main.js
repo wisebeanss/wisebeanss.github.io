@@ -22,6 +22,20 @@ button2.addEventListener("click", function () {
 button3.addEventListener("click", function () { 
 	show(3) });
 show(1);
+// Header (Hamburger Menu)
 
+const hamBtn = document.querySelector('#hamIcon');
+const menuItemsList = document.querySelector(".topnav ul");
+hamBtn.addEventListener("click", toggleMenus);
+function toggleMenus() {
+	if(menuItemsList.classList.contains("menuShow")) {
+		hamBtn.innerHTML="Open Menu";
+		menuItemsList.classList.remove("menuShow");
+	}
+	else {
+		hamBtn.innerHTML="Close Menu";
+		menuItemsList.classList.add("menuShow");
+	}
+}
 
 // Memory Game
