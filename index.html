@@ -5,14 +5,21 @@
 	<title>Human Cognitive Abilities</title>
 	<link href="style.css" type="text/css" rel="stylesheet" />
 	<script src="main.js" defer></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=no">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 
 <body>
 	<header>
+		<button id="fullscreen"></button>
+		<button class="QR">Qr Code</button>
+		<div class="QR">
+			<img>
+		</div>
 		<h1 class="header">Human Cognitive Abilities</h1>
 		<nav class="topnav">
-			<button id="hamIcon">Open Menu</button>
+			<button id="hamIcon"><img src="Images/hamburgericon.svg" width="30" height="30"></button>
 			<ul>
 				<li><button id="btn1">Human Cognitive Abilities</button></li>
 				<li><button id="btn2">Human Reaction Speed</button></li>
@@ -22,7 +29,7 @@
 	</header>
 	<main>
 		<nav class="sidenav">
-			<ul class="sidenav">
+			<ul>
 				<li><a href="#cognitiveskills">What are Cognitive Skills?</a></li>
 				<li><a href="#types">Types of Cognitive Skills</a></li>
 				<li><a href="#improve">Habits that improve cognitive skills</a></li>
@@ -30,23 +37,25 @@
 		</nav>
 		<div class="topic" id="topic1">
 			<article id="cognitiveskills">
-				<h2>What are the cognitive skills?</h2>
-				<p>
-					Cognitive skills are the brain's core mental abilities used to think,
-					read, learn, remember. They are what your mind uses to process information, interact with the world,
-					and
-					solve problems.
-				</p>
+				<div>
+					<button id="sidenavHamIcon"><img src="Images/hamburgericon.svg" width="30" height="30"></button>
+					<h2>What are the cognitive skills?</h2>
+					<p>
+						Cognitive skills are the brain's core mental abilities used to think,
+						read, learn, remember. They are what your mind uses to process information, interact with the
+						world,
+						and
+						solve problems.
+					</p>
+					<h2 id="types">Types of Cognitive Skills</h2>
+					<ol>
+						<li>Memory</li>
+						<li>Processing Speed</li>
+						<li>Sensory Processing</li>
+						<li>Attention</li>
+					</ol>
+				</div>
 				<img src="Images/brain.jpg" width="314" height="339">
-			</article>
-			<article id="types">
-				<h2>Types of Cognitive Skills</h2>
-				<ol>
-					<li>Memory</li>
-					<li>Processing Speed</li>
-					<li>Sensory Processing</li>
-					<li>Attention</li>
-				</ol>
 			</article>
 			<article id="improve">
 				<h3>Habits that can improve cognitive functions</h3>
@@ -84,19 +93,46 @@
 		</div>
 		<div class="topic" id="topic2">
 			<h2>Reaction Speed</h2>
-			<article>
+			<article id="reaction">
 				<h3>What is Reaction Speed?</h3>
 				<p>Reaction speed is how long it takes for a human to process and act upon receiving new information
 					It involves your senses, nervous system, and your muscles working in unison, all happening in a
 					fraction of a second
 				</p>
 			</article>
-			<article>
+			<article id="types">
+				<h3>Types of Reaction Time</h3>
+				<ol>
+					<li>
+						<p><strong>Simple (reflex) Reaction Time:</strong> The time taken to respond to a single
+							stimulus
+							with a single response</p>
+					</li>
+					<li>
+						<p><strong>Choice Reaction Time:</strong>
+							The time taken to consciously respond to one of several stimuli, each requiring a different
+							response
+						</p>
+					</li>
+				</ol>
+			</article>
+			<article id="average">
 				<h3>Average Reaction Speed</h3>
 				<p>The average reaction speed of a human is about 250 milliseconds while competitive e-sports
 					professionals generally range around 150-170ms </p>
+				<div class="showcase">
+					<button>Play Animation</button>
+					<h4>Normal Reaction Time:</h4>
+					<div id="normal">
+						<div class="white"></div>
+					</div>
+					<h4>Gamer Reaction Time:</h4>
+					<div id="gamer">
+						<div class="white"></div>
+					</div>
+				</div>
 			</article>
-			<article>
+			<article id="facts">
 				<h3>Fun facts about the human reaction speed</h3>
 				<ul>
 					<li>
@@ -117,11 +153,74 @@
 					</li>
 				</ul>
 			</article>
-
+			<article id="factors">
+				<h3>Factors Influencing Reaction Time:</h3>
+				<ol>
+					<li><strong>Stimulus Type: </strong> Different types of stimuli (visual, auditory, tactile) can
+						affect
+						reaction time. Generally, people respond faster to
+						auditory stimuli than to visual ones
+					</li>
+					<li>
+						<strong>Stimulus Intensity: </strong>Stronger stimuli can lead to quicker reaction times.
+					</li>
+					<li>
+						<strong>Complexity of Response: </strong>Simple tasks usually result in faster reaction times
+						compared to complex
+						tasks that require more
+						processing.
+					</li>
+					<li>
+						<strong>Individual Differences: </strong>Age, level of fatigue, and other individual factors can
+						influence
+						reaction time.
+					</li>
+					<li>
+						<strong>State of Attention: </strong>Being more focused and attentive can reduce reaction time.
+					</li>
+					<li>
+						<strong>Practice and Training: </strong>Repeated exposure and practice can improve reaction
+						time.
+					</li>
+					<li>
+						<strong>Environmental Factors: </strong>Conditions like lighting, noise, and distractions can
+						affect reaction
+						time.
+					</li>
+				</ol>
+			</article>
+			<section class="quizContainer">
+				<h3>Quiz</h3>
+				<button>Start Quiz</button>
+				<div id="quiz">
+					<form>
+					</form>
+					<button>End Quiz</button>
+				</div>
+				
+			</section>
 		</div>
 		<div class="topic" id="topic3">
 			<h2>Memory</h2>
-			<p></p>
+			<p> Memory is the cognitive faculty of the brain to encode, store, and retreive information</p>
+			<p>Below is a memory minigame that you can take:</p>
+
+			<div id="gameContainer">
+				<button>Start Game</button>
+				<div id="game">
+					<div class="hearts">
+						<div class="heart" id="heart1"></div>
+						<div class="heart" id="heart2"></div>
+						<div class="heart" id="heart3"></div>
+					</div>
+					<h1>Memory Test</h1>
+					<h2>Memorise the numbers, separate each number with a comma</h2>
+					<p>Example: 1,2</p>
+					<input type="text" readonly>
+					<button>Submit Answer</button>
+				</div>
+
+			</div>
 		</div>
 	</main>
 </body>
