@@ -1,7 +1,5 @@
 // Header (Button Logic)
-const button1 = document.querySelector('#btn1');
-const button2 = document.querySelector('#btn2');
-const button3 = document.querySelector('#btn3');
+const buttonGrp = document.querySelector('.buttonGroup');
 const listhref = document.querySelectorAll('.sidenav ul');
 var alltopics = document.querySelectorAll('.topic');
 function hideall() {
@@ -24,6 +22,7 @@ const links1 = [
 ];
 const links2 = [
 	{ href: '#reaction', label: 'What is Reaction Speed?' },
+	{ href: '#typesReaction', label: "Types of Reaction Speed" },
 	{ href: '#average', label: 'Average Reaction Speed' },
 	{ href: '#facts', label: 'Fun Facts' },
 	{ href: '#factors', label: 'Factors' }
@@ -36,24 +35,30 @@ function updateSideNav(links) {
 		sidenavList.appendChild(createhref(href, label));
 	}
 }
-button1.addEventListener("click", function () {
-	show(1)
-	updateSideNav(links1);
-});
-button2.addEventListener("click", function () {
-	show(2)
-	updateSideNav(links2);
-});
-button3.addEventListener("click", function () {
-	show(3)
-	document.querySelector('.sidenav').style.display = "none";
+buttonGrp.addEventListener('click' ,function (evnt) {
+	const btn = evnt.target.closest('button');
+	if(!btn) return;
+	switch (btn.id) {
+		case 'btn1':
+			show(1);
+			updateSideNav(links1);
+			breakk;
+		case 'btn2':
+			show(2);
+			updateSideNav(links2);
+			break;
+		case 'btn3':
+			show(3);
+			document.querySelector('.sidenav').style.display = "none";
+			break;
+	}
 });
 show(1);
 
 // Fullscreen Logic
 const fullScreenBtn = document.querySelector('header #fullscreen');
-fullScreenBtn.addEventListener('click', function() {
-	if(fullScreenBtn.classList.contains("FS")) {
+fullScreenBtn.addEventListener('click', function () {
+	if (fullScreenBtn.classList.contains("FS")) {
 		fullScreenBtn.classList.remove("FS");
 		exitfullScreen();
 	}
@@ -233,6 +238,11 @@ function generateQuiz(questions) {
 		form.append(fieldset);
 	}
 }
+function removeQuiz() {
+	form.innerHTML = " ";
+	score = 0;
+	document.querySelector(".quizContainer > h3").innerHTML = "Quiz";
+}
 function checkAnswers(questions, answers) {
 	let score = 0;
 	let unanswered = [];
@@ -251,7 +261,8 @@ function checkAnswers(questions, answers) {
 		alert("Please answer all questions before submitting");
 		return;
 	}
-	alert(`You scored ${score} out of ${questions.length}`);
+	removeQuiz();
+	document.querySelector(".quizContainer > h3").innerHTML = `Score: ${score}/10`;
 	return score;
 }
 
@@ -280,29 +291,68 @@ function toggleSideNavMenus() {
 		sidenavList.classList.add("menuShow");
 	}
 }
+// QR Code Btn 
+const qrCodeBtn = document.querySelector("button.qrToggleBtn");
+const qrDiv = document.querySelector('div.qrPopUp');
+qrCodeBtn.addEventListener('click', function () {
+	qrDiv.classList.toggle("showQr");
+})
+
+// Header brain hover
 
 // Memory Game
 let randomNumber = [];
 let level = 1;
 let index = 0;
 let lives = 3;
-let tries = 3;
-const StartGameBtn = document.querySelector('#gameContainer button');
-StartGameBtn.addEventListener("click", game);
+let hardmode = false;
+
+const StartGameBtn = document.querySelector('#gameContainer button#start');
+StartGameBtn.addEventListener("click", function () {
+	level = 1;
+	lives = 3;
+	reset();
+	game();
+});
 const SubmitAnswer = document.querySelector('#game input');
 const SubmitAnswerBtn = document.querySelector('#game button');
+const hardModeBtn = document.querySelector('#gameContainer button#hard');
+hardModeBtn.addEventListener('click',
+	function () {
+		if (!hardmode) {
+			hardmode = true;
+			console.log("hard mode on!");
+		}
+		else {
+			hardmode = false;
+			console.log("hard mode off!");
+		}
+	}
+);
+let ball = document.getElementById("ball");
+let ballX = 0;
+let ballY = 0;
+let velX = 20;
+let velY = 20;
+const mamboAudio = new Audio('Audio/mambo.mp3');
+let ballInterval = null;
 SubmitAnswerBtn.addEventListener('click', checkAnswer);
 const header1 = document.querySelector('#game h1');
 const header2 = document.querySelector('#game h2');
 const para = document.querySelector('#game p');
 
 function game() {
+	if(hardmode) {
+		clearInterval(ballInterval);
+		ballInterval = setInterval(ballAnim, 16.6);
+	}
+	else {
+		clearInterval(ballInterval);
+		ball.style.display = "none";
+	}
 	StartGameBtn.disabled = true;
 	randomNumber = [];
 	index = 0;
-	tries = 3;
-	reset();
-	header2.innerHTML = "Tries: " + tries;
 	para.style.display = "none";
 	for (let i = 0; i < level; i++) {
 		randomNumber[i] = Math.floor(10 * Math.random()) + 1;
@@ -320,54 +370,50 @@ function game() {
 			clearInterval(gameInterval);
 			header1.innerHTML = "";
 			SubmitAnswer.readOnly = false;
+			SubmitAnswerBtn.disabled = false;
 		}
 	}, 1000);
 }
 
 
 function checkAnswer() {
-	if (tries !== 0) {
-		let PlayerAnswers = SubmitAnswer.value.split(',');
-		let isCorrect = true;
-		if (PlayerAnswers.length !== randomNumber.length) {
-			isCorrect = false;
+	if (SubmitAnswerBtn.disabled) return;
+	let PlayerAnswers = SubmitAnswer.value.split(',');
+	let isCorrect = true;
+	if (PlayerAnswers.length !== randomNumber.length) {
+		isCorrect = false;
 
-		}
-		else {
-			for (let i = 0; i < PlayerAnswers.length; i++) {
-				console.log(PlayerAnswers[i]);
-				if (Number(PlayerAnswers[i]) !== randomNumber[i]) {
-					isCorrect = false;
-					break;
-				}
-			}
-		}
-		if (!isCorrect) {
-			changeHeart(lives);
-			lives -= 1;
-			tries -= 1;
-		}
-		else {
-			level++;
-		}
-		header1.innerHTML = isCorrect ? "You win" : "You Lose";
-		header2.innerHTML = "Tries: " + tries;
-		SubmitAnswer.value = "";
-		if(lives > 0) {
-			setTimeout(function() {
-				game();
-			}, 1000);
-		}
-		else {
-			header1.innerHTML = "Game Over";
-			SubmitAnswer.readOnly = true;
-		}
 	}
 	else {
-		SubmitAnswer.value = "";
+		for (let i = 0; i < PlayerAnswers.length; i++) {
+			console.log(PlayerAnswers[i]);
+			if (Number(PlayerAnswers[i]) !== randomNumber[i]) {
+				isCorrect = false;
+				break;
+			}
+		}
+	}
+	if (!isCorrect) {
+		changeHeart(lives);
+		lives -= 1;
+	}
+	else {
+		level++;
+	}
+	header1.innerHTML = isCorrect ? "You win" : "You Lose";
+	SubmitAnswer.value = "";
+	if (lives > 0) {
+		setTimeout(function () {
+			game();
+		}, 1000);
+	}
+	else {
+		header1.innerHTML = "Game Over";
 		SubmitAnswer.readOnly = true;
+		StartGameBtn.disabled = false;
 	}
 }
+
 function reset() {
 	const heart = document.querySelectorAll('.heart');
 	for (let i = 0; i < 3; i++) {
@@ -377,4 +423,49 @@ function reset() {
 function changeHeart() {
 	const heart = document.getElementById('heart' + lives);
 	heart.style.backgroundPosition = "0px 0px";
+}
+
+
+function ballAnim() {
+	if (hardmode) {
+		ball.style.display = "block";
+		const gameDiv = document.querySelector('#game');
+		const width = gameDiv.offsetWidth;
+		const height = gameDiv.offsetHeight;
+		const ballSize = ball.offsetWidth;
+
+		ballX += velX;
+		ballY += velY;
+
+		if (ballX > width - ballSize) {
+			velX = -velX;
+			ballX = width - ballSize;
+			mamboAudio.play();
+		}
+		if (ballY > height - ballSize) {
+			velY = -velY;
+			ballY = height - ballSize;
+			mamboAudio.play();
+		}
+		if (ballX < 0) {
+			velX = -velX;
+			ballX = 0;
+			mamboAudio.play();
+		}
+		if (ballY < 0) {
+			velY = -velY;
+			ballY = 0;
+			mamboAudio.play();
+		}
+
+		ball.style.left = ballX + "px";
+		ball.style.top = ballY + "px";
+	}
+	else {
+		velX = 0;
+		velY = 0;
+		ballX = 1;
+		ballX = 1;
+		ball.style.display = "none";
+	}
 }
