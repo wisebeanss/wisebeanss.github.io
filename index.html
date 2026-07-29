@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 	<title>Human Cognitive Abilities</title>
@@ -8,19 +8,21 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=no">
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-capable" content="yes">
+	<link rel="icon" type="image/x-cion" href="favicon.ico">
+	<link rel="manifest" href="manifest.json"/>
 </head>
 
 <body>
 	<header>
 		<button id="fullscreen"></button>
-		<button class="QR">Qr Code</button>
-		<div class="QR">
-			<img>
+		<button class="qrToggleBtn">Qr Code</button>
+		<div class="qrPopUp">
+			<img src="Images/qrCode.png">
 		</div>
-		<h1 class="header">Human Cognitive Abilities</h1>
+		<h1>Human Cognitive Abilities</h1>
 		<nav class="topnav">
 			<button id="hamIcon"><img src="Images/hamburgericon.svg" width="30" height="30"></button>
-			<ul>
+			<ul class="buttonGroup">
 				<li><button id="btn1">Human Cognitive Abilities</button></li>
 				<li><button id="btn2">Human Reaction Speed</button></li>
 				<li><button id="btn3">Memory Test</button></li>
@@ -44,7 +46,7 @@
 						Cognitive skills are the brain's core mental abilities used to think,
 						read, learn, remember. They are what your mind uses to process information, interact with the
 						world,
-						and
+						and 
 						solve problems.
 					</p>
 					<h2 id="types">Types of Cognitive Skills</h2>
@@ -64,29 +66,35 @@
 						<article>
 							<h3>Physical Activity</h3>
 							<p>
-								Physical Activity supports both body and your mind, research has also shown that
-								physical activity improves learning ability,
-								memory, decision making etc.
+								Regular physical activity can improve blood flow to the brain and support better memory, concentration, and mental
+								alertness. Activities such as running, cycling, swimming, walking, or playing sports can be beneficial. Even short
+								periods of exercise can help you feel more energetic and focused.
 							</p>
 							<img src="Images/running.png">
 						</article>
+						
 					</li>
 					<li>
 						<article>
 							<h3>Get Enough Sleep</h3>
-							<p>Getting 7-8 hours of sleep each night can help preserve attention, memory and
-								decision making</p>
+							<p>
+								Aim for around 7–9 hours of quality sleep each night. Sleep gives your brain time to rest, process information, and
+								strengthen memories from the day. Getting enough sleep can also improve concentration, reaction time, problem-solving
+								skills, and your ability to learn new information.
+							</p>
 							<img src="Images/sleep.jpg">
 						</article>
+						
 					</li>
 					<li>
 						<article>
 							<h3>Eating a Balanced Diet</h3>
-							<p>Eating food that support your physical health also suppports your brain. Balanced
-								diets with a range of
-								protein, fat, and carbohydrates are important</p>
-							<img src="Images/food.jpg">
+							<p>Your brain needs a steady supply of energy and nutrients to function effectively. Eating a balanced diet containing
+							fruits, vegetables, whole grains, nuts, protein, and healthy fats can support overall brain health. Drinking enough
+							water is also important, as dehydration can make it harder to concentrate and think clearly.</p>
+								<img src="Images/food.jpg">
 						</article>
+						
 					</li>
 				</ul>
 			</article>
@@ -100,7 +108,7 @@
 					fraction of a second
 				</p>
 			</article>
-			<article id="types">
+			<article id="typesReaction">
 				<h3>Types of Reaction Time</h3>
 				<ol>
 					<li>
@@ -206,8 +214,10 @@
 			<p>Below is a memory minigame that you can take:</p>
 
 			<div id="gameContainer">
-				<button>Start Game</button>
+				<button id="start">Start Game</button>
+				<button id="hard">Hard Mode</button>
 				<div id="game">
+					<div id="ball"></div>
 					<div class="hearts">
 						<div class="heart" id="heart1"></div>
 						<div class="heart" id="heart2"></div>
