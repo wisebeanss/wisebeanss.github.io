@@ -117,6 +117,9 @@ button:hover {
 }
 
 @media (max-width:800px) {
+	.qrPopUp {
+		display:none;
+	}
 	.topnav ul {
 		display: flex;
 		flex-direction: column;
