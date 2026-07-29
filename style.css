@@ -117,7 +117,7 @@ button:hover {
 }
 
 @media (max-width:800px) {
-	.qrPopUp {
+	header button.qrToggleBtn {
 		display:none;
 	}
 	.topnav ul {
