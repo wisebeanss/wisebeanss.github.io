@@ -19,7 +19,7 @@ header {
 	background-color: #484e5a;
 	background-attachment: fixed;
 }
-
+/*pesudo element made by css (makes an element before the header and applies the css there)*/
 header::before {
 	content: "";
 	position: absolute;
@@ -90,7 +90,11 @@ button {
 button:hover {
 	background-color: #eff0f337;
 }
-
+button#reset {
+	width:50px;
+	height:50px;
+	margin:5px;
+}
 /* Top Navigation Bar */
 .topnav {
 	flex-direction: row;
@@ -423,7 +427,7 @@ article#cognitiveskills>img {
 #game .hearts {
 	scale: 60%;
 }
-
+/*css sprites*/
 #game .heart {
 	background-image: url("Images/heart.gif");
 	background-repeat: no-repeat;
@@ -454,4 +458,9 @@ article#cognitiveskills>img {
 	height:100px;
 	background-color: white;
 	border-radius: 50%;
+}
+#highscore li {
+	border:1px white solid;
+	padding:10px 50px;
+	border-radius: 5px;
 }
