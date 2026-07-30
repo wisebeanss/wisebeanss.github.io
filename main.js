@@ -1,6 +1,6 @@
 // Header (Button Logic)
 const buttonGrp = document.querySelector('.buttonGroup');
-const listhref = document.querySelectorAll('.sidenav ul');
+
 var alltopics = document.querySelectorAll('.topic');
 function hideall() {
 	for (let onetopic of alltopics) {
@@ -42,7 +42,7 @@ buttonGrp.addEventListener('click' ,function (evnt) {
 		case 'btn1':
 			show(1);
 			updateSideNav(links1);
-			breakk;
+			break;
 		case 'btn2':
 			show(2);
 			updateSideNav(links2);
@@ -123,10 +123,10 @@ startAnimBtn.addEventListener('click', function () {
 
 //Quiz Game 
 const startButton = document.querySelector('.quizContainer > button');
-startButton.addEventListener('click', function () { generateQuiz(questions) });
+startButton.addEventListener('click', function () { generateQuiz(questions); });
 
 const endButton = document.querySelector('#quiz > button');
-endButton.addEventListener('click', function () { checkAnswers(questions, answers) });
+endButton.addEventListener('click', function () { checkAnswers(questions, answers); });
 let questions = [
 	{
 		question: "What is reaction speed?", answer: [
@@ -212,6 +212,7 @@ let questions = [
 ];
 let answers = [2, 1, 2, 3, 2, 3, 1, 2, 2, 1];
 const form = document.querySelector('#quiz form');
+let score = 0;
 
 function generateQuiz(questions) {
 	startButton.disabled = true;
@@ -229,7 +230,7 @@ function generateQuiz(questions) {
 			let input = document.createElement('input');
 			input.name = `Q${i + 1}`;
 			input.type = 'radio';
-			input.value = j + 1
+			input.value = j + 1;
 			label.textContent = questions[i].answer[j];
 			label.insertBefore(input, label.firstChild);
 			label.append(document.createElement('br'));
@@ -244,7 +245,7 @@ function removeQuiz() {
 	document.querySelector(".quizContainer > h3").innerHTML = "Quiz";
 }
 function checkAnswers(questions, answers) {
-	let score = 0;
+	
 	let unanswered = [];
 	startButton.disabled = false;
 	for (let i = 0; i < questions.length; i++) {
@@ -296,7 +297,7 @@ const qrCodeBtn = document.querySelector("button.qrToggleBtn");
 const qrDiv = document.querySelector('div.qrPopUp');
 qrCodeBtn.addEventListener('click', function () {
 	qrDiv.classList.toggle("showQr");
-})
+});
 
 // Header brain hover
 
@@ -338,9 +339,9 @@ const mamboAudio = new Audio('Audio/mambo.mp3');
 let ballInterval = null;
 SubmitAnswerBtn.addEventListener('click', checkAnswer);
 const header1 = document.querySelector('#game h1');
-const header2 = document.querySelector('#game h2');
-const para = document.querySelector('#game p');
 
+const para = document.querySelector('#game p');
+let gameInterval = null;
 function game() {
 	if(hardmode) {
 		clearInterval(ballInterval);
@@ -364,7 +365,7 @@ function game() {
 	gameInterval = setInterval(function () {
 		if (index < randomNumber.length) {
 			header1.innerHTML = randomNumber[index];
-			index++
+			index++;
 		}
 		else {
 			clearInterval(gameInterval);
