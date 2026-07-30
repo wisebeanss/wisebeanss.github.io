@@ -107,14 +107,12 @@ const whiteDivGamer = document.querySelector('#gamer .white');
 const startAnimBtn = document.querySelector('.showcase > button');
 
 startAnimBtn.addEventListener('click', function () {
-	// Remove the class from both
+	// Remove the class from both 
 	whiteDivGamer.classList.remove("play");
 	whiteDivNormal.classList.remove("play");
-
-	// Force a reflow so the browser registers the removal
-	void whiteDivGamer.offsetWidth;
-	void whiteDivNormal.offsetWidth;
-
+	//Force a reflow by getting the browser to recalculate the layout in the script
+	whiteDivNormal.offsetWidth;
+	whiteDivGamer.offsetHeight;
 	// Re-add the class to restart the animation
 	whiteDivGamer.classList.add("play");
 	whiteDivNormal.classList.add("play");
@@ -250,6 +248,7 @@ function checkAnswers(questions, answers) {
 	startButton.disabled = false;
 	for (let i = 0; i < questions.length; i++) {
 		const selected = form.querySelector(`input[name="Q${i + 1}"]:checked`);
+		//if any question isnt selected, it adds it to the unanswered array
 		if (!selected) {
 			unanswered.push(i + 1);
 			continue;
@@ -258,6 +257,7 @@ function checkAnswers(questions, answers) {
 			score++;
 		}
 	}
+	//when unanswered array has any elements at all, it alerts you
 	if (unanswered.length > 0) {
 		alert("Please answer all questions before submitting");
 		return;
@@ -339,7 +339,7 @@ const mamboAudio = new Audio('Audio/mambo.mp3');
 let ballInterval = null;
 SubmitAnswerBtn.addEventListener('click', checkAnswer);
 const header1 = document.querySelector('#game h1');
-
+let awaitingName = false;
 const para = document.querySelector('#game p');
 let gameInterval = null;
 function game() {
@@ -372,13 +372,26 @@ function game() {
 			header1.innerHTML = "";
 			SubmitAnswer.readOnly = false;
 			SubmitAnswerBtn.disabled = false;
+			console.log("qweqw");
 		}
 	}, 1000);
 }
 
 
 function checkAnswer() {
+	
 	if (SubmitAnswerBtn.disabled) return;
+	if(awaitingName) {
+		let name = SubmitAnswer.value.trim();
+		if(name ==="") {
+			alert("Please enter a name before saving your score");
+			return;
+		}
+		updateLeaderboard(name, level -1);
+		awaitingName = false;
+	}
+	//Splits the string every time a comma appears and stores them into an array
+	// (etc: "a, b, c" is split into ["a", "b", "c"])
 	let PlayerAnswers = SubmitAnswer.value.split(',');
 	let isCorrect = true;
 	if (PlayerAnswers.length !== randomNumber.length) {
@@ -410,7 +423,10 @@ function checkAnswer() {
 	}
 	else {
 		header1.innerHTML = "Game Over";
-		SubmitAnswer.readOnly = true;
+		SubmitAnswer.readOnly = false;
+		SubmitAnswer.value = "";
+		SubmitAnswer.placeholder = "Input Name";
+		awaitingName = true;
 		StartGameBtn.disabled = false;
 	}
 }
@@ -425,8 +441,12 @@ function changeHeart() {
 	const heart = document.getElementById('heart' + lives);
 	heart.style.backgroundPosition = "0px 0px";
 }
-
-
+let highScore = document.querySelector("div#highscore > ul");
+function updateLeaderboard(name, score) {
+	let li = document.createElement('li');
+	li.innerHTML = `${name}: ${score}`;
+	highScore.append(li);
+}
 function ballAnim() {
 	if (hardmode) {
 		ball.style.display = "block";
@@ -470,3 +490,59 @@ function ballAnim() {
 		ball.style.display = "none";
 	}
 }
+//Reset Logic 
+const resetBtn = document.querySelector('#reset');
+resetBtn.addEventListener('click', function() {
+	// Stop any running timers/intervals
+	clearInterval(gameInterval);
+	clearInterval(ballInterval);
+	gameInterval = null;
+	ballInterval = null;
+
+	// Reset memory game state
+	level = 1;
+	lives = 3;
+	index = 0;
+	randomNumber = [];
+	hardmode = false;
+	velX = 20;
+	velY = 20;
+	ballX = 0;
+	ballY = 0;
+
+	header1.innerHTML = "";
+	para.style.display = "";
+	SubmitAnswer.value = "";
+	SubmitAnswer.readOnly = true;
+	SubmitAnswerBtn.disabled = true;
+	StartGameBtn.disabled = false;
+	ball.style.display = "none";
+	reset(); // resets the hearts
+
+	// Reset quiz
+	removeQuiz();
+	document.querySelector('#quiz').style.display = "none";
+	startButton.disabled = false;
+
+	// Reset showcase bars
+	whiteDivNormal.classList.remove("play");
+	whiteDivGamer.classList.remove("play");
+
+	// Reset nav/menu state
+	menuItemsList.classList.remove("menuShow");
+	sidenavList.classList.remove("menuShow");
+	qrDiv.classList.remove("showQr");
+
+	// Exit fullscreen if active
+	if (fullScreenBtn.classList.contains("FS")) {
+		fullScreenBtn.classList.remove("FS");
+		exitfullScreen();
+	}
+
+	// Go back to topic 1
+	show(1);
+	updateSideNav(links1);
+	awaitingName = false;
+	SubmitAnswer.placeholder = "";
+	SubmitAnswerBtn.innerHTML = "Submit Answer";
+});
