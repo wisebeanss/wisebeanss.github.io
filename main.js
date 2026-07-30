@@ -111,8 +111,8 @@ startAnimBtn.addEventListener('click', function () {
 	whiteDivGamer.classList.remove("play");
 	whiteDivNormal.classList.remove("play");
 	//Force a reflow by getting the browser to recalculate the layout in the script
-	whiteDivNormal.offsetWidth;
-	whiteDivGamer.offsetHeight;
+	void whiteDivNormal.offsetWidth;
+	void whiteDivGamer.offsetHeight;
 	// Re-add the class to restart the animation
 	whiteDivGamer.classList.add("play");
 	whiteDivNormal.classList.add("play");
