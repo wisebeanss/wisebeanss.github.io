@@ -183,6 +183,10 @@ a {
 		flex-direction: column;
 	}
 
+	h1 {
+		margin:0;
+		padding:0;
+	}
 	nav.sidenav {
 		top: 60px;
 		left: 0;
