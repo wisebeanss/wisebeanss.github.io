@@ -352,6 +352,7 @@ function game() {
 		ball.style.display = "none";
 	}
 	StartGameBtn.disabled = true;
+	SubmitAnswer.placeholder = "";
 	randomNumber = [];
 	index = 0;
 	para.style.display = "none";
