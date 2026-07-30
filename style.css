@@ -183,7 +183,7 @@ a {
 		flex-direction: column;
 	}
 
-	h1 {
+	header > h1 {
 		margin:0;
 		padding:0;
 	}
