@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Human Cognitive Abilities</title>
+	<link href="style.css" type="text/css" rel="stylesheet">
+	<script src="main.js" defer></script>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=no">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<link rel="icon" type="image/x-cion" href="favicon.ico">
+	<link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+
+	<header>
+		<button id="fullscreen"></button>
+		<button class="qrToggleBtn">Qr Code</button>
+		<button id="reset">Reset</button>
+		<div class="qrPopUp">
+			<img src="Images/qrCode.png" alt="QR Code">
+		</div>
+		<h1>Human Cognitive Abilities</h1>
+		<nav class="topnav">
+			<button id="hamIcon"><img src="Images/hamburgericon.svg" width="30" height="30"
+					alt="Hamburger Icon"></button>
+			<ul class="buttonGroup">
+				<li><button id="btn1">Human Cognitive Abilities</button></li>
+				<li><button id="btn2">Human Reaction Speed</button></li>
+				<li><button id="btn3">Memory Test</button></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<nav class="sidenav">
+			<ul>
+				<li><a href="#cognitiveskills">What are Cognitive Skills?</a></li>
+				<li><a href="#types">Types of Cognitive Skills</a></li>
+				<li><a href="#improve">Habits that improve cognitive skills</a></li>
+			</ul>
+		</nav>
+		<div class="topic" id="topic1">
+			<article id="cognitiveskills">
+				<div>
+					<button id="sidenavHamIcon"><img src="Images/hamburgericon.svg" width="30" height="30"
+							alt="Hamburger Icon"></button>
+					<h2>What are the cognitive skills?</h2>
+					<p>
+						Cognitive skills are the brain's core mental abilities used to think,
+						read, learn, remember. They are what your mind uses to process information, interact with the
+						world,
+						and
+						solve problems.
+					</p>
+					<h2 id="types">Types of Cognitive Skills</h2>
+					<ol>
+						<li>Memory</li>
+						<li>Processing Speed</li>
+						<li>Sensory Processing</li>
+						<li>Attention</li>
+					</ol>
+				</div>
+				<img src="Images/brain.jpg" width="314" height="339" alt="Image of a brain">
+			</article>
+			<article id="improve">
+				<h3>Habits that can improve cognitive functions</h3>
+				<ul>
+					<li>
+						<article>
+							<h3>Physical Activity</h3>
+							<p>
+								Regular physical activity can improve blood flow to the brain and support better memory,
+								concentration, and mental
+								alertness. Activities such as running, cycling, swimming, walking, or playing sports can
+								be beneficial. Even short
+								periods of exercise can help you feel more energetic and focused.
+							</p>
+							<img src="Images/running.png" alt="Image of someone running">
+						</article>
+
+					</li>
+					<li>
+						<article>
+							<h3>Get Enough Sleep</h3>
+							<p>
+								Aim for around 7–9 hours of quality sleep each night. Sleep gives your brain time to
+								rest, process information, and
+								strengthen memories from the day. Getting enough sleep can also improve concentration,
+								reaction time, problem-solving
+								skills, and your ability to learn new information.
+							</p>
+							<picture>
+								<source srcset="Images/sleepMobile.jpg" media="(width <= 800px)" >
+								<img src="Images/sleep.jpg" alt="Image of someone sleeping">
+							</picture>
+
+						</article>
+
+					</li>
+					<li>
+						<article>
+							<h3>Eating a Balanced Diet</h3>
+							<p>Your brain needs a steady supply of energy and nutrients to function effectively. Eating
+								a balanced diet containing
+								fruits, vegetables, whole grains, nuts, protein, and healthy fats can support overall
+								brain health. Drinking enough
+								water is also important, as dehydration can make it harder to concentrate and think
+								clearly.</p>
+							<picture>
+								<source srcset="Images/foodmobile.jpg" media="(width <= 800px)" >
+								<img src="Images/food.jpg" alt="Image of a salad">
+							</picture>
+
+						</article>
+
+					</li>
+				</ul>
+			</article>
+		</div>
+		<div class="topic" id="topic2">
+			<h2>Reaction Speed</h2>
+			<article id="reaction">
+				<h3>What is Reaction Speed?</h3>
+				<p>Reaction speed is how long it takes for a human to process and act upon receiving new information
+					It involves your senses, nervous system, and your muscles working in unison, all happening in a
+					fraction of a second
+				</p>
+			</article>
+			<article id="typesReaction">
+				<h3>Types of Reaction Time</h3>
+				<ol>
+					<li>
+						<p><strong>Simple (reflex) Reaction Time:</strong> The time taken to respond to a single
+							stimulus
+							with a single response</p>
+					</li>
+					<li>
+						<p><strong>Choice Reaction Time:</strong>
+							The time taken to consciously respond to one of several stimuli, each requiring a different
+							response
+						</p>
+					</li>
+				</ol>
+			</article>
+			<article id="average">
+				<h3>Average Reaction Speed</h3>
+				<p>The average reaction speed of a human is about 250 milliseconds while competitive e-sports
+					professionals generally range around 150-170ms </p>
+				<div class="showcase">
+					<button>Play Animation</button>
+					<h4>Normal Reaction Time:</h4>
+					<div id="normal">
+						<div class="white"></div>
+					</div>
+					<h4>Gamer Reaction Time:</h4>
+					<div id="gamer">
+						<div class="white"></div>
+					</div>
+				</div>
+			</article>
+			<article id="facts">
+				<h3>Fun facts about the human reaction speed</h3>
+				<ul>
+					<li>
+						<p>Auditory signals reach the brain processing power faster than visual cues does, hence why
+							sprinters react to the bang of the gun
+							instead of its flash. However, you process touch the fastest, averaging around 0.15 seconds
+						</p>
+					</li>
+					<li>
+						<p>Human reaction time generally peak around 24 years of age before declining by around 4 to 10
+							milliseconds after that</p>
+					</li>
+					<li>
+						<p>When attempting to anticipate and react to somemthing, your reaction time fluctuates because
+							you occasionally lose focus before regaining
+							it back after
+						</p>
+					</li>
+				</ul>
+			</article>
+			<article id="factors">
+				<h3>Factors Influencing Reaction Time:</h3>
+				<ol>
+					<li><strong>Stimulus Type: </strong> Different types of stimuli (visual, auditory, tactile) can
+						affect
+						reaction time. Generally, people respond faster to
+						auditory stimuli than to visual ones
+					</li>
+					<li>
+						<strong>Stimulus Intensity: </strong>Stronger stimuli can lead to quicker reaction times.
+					</li>
+					<li>
+						<strong>Complexity of Response: </strong>Simple tasks usually result in faster reaction times
+						compared to complex
+						tasks that require more
+						processing.
+					</li>
+					<li>
+						<strong>Individual Differences: </strong>Age, level of fatigue, and other individual factors can
+						influence
+						reaction time.
+					</li>
+					<li>
+						<strong>State of Attention: </strong>Being more focused and attentive can reduce reaction time.
+					</li>
+					<li>
+						<strong>Practice and Training: </strong>Repeated exposure and practice can improve reaction
+						time.
+					</li>
+					<li>
+						<strong>Environmental Factors: </strong>Conditions like lighting, noise, and distractions can
+						affect reaction
+						time.
+					</li>
+				</ol>
+			</article>
+			<section class="quizContainer">
+				<h3>Quiz</h3>
+				<button>Start Quiz</button>
+				<div id="quiz">
+					<form>
+					</form>
+					<button>End Quiz</button>
+				</div>
+
+			</section>
+		</div>
+		<div class="topic" id="topic3">
+			<h2>Memory</h2>
+			<p> Memory is the cognitive faculty of the brain to encode, store, and retreive information</p>
+			<p>Below is a memory minigame that you can take:</p>
+
+			<div id="gameContainer">
+				<button id="start">Start Game</button>
+				<button id="hard">Hard Mode</button>
+				<div id="game">
+					<div id="ball"></div>
+					<div class="hearts">
+						<div class="heart" id="heart1"></div>
+						<div class="heart" id="heart2"></div>
+						<div class="heart" id="heart3"></div>
+					</div>
+					<h1>Memory Test</h1>
+					<h2>Memorise the numbers, separate each number with a comma</h2>
+					<p>Example: 1,2</p>
+					<input type="text" readonly>
+					<button>Submit Answer</button>
+				</div>
+				<div id="highscore">
+					<h3> High Score:</h3>
+					<ul>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
+
+</html>
