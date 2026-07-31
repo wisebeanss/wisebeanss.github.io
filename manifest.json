@@ -8,8 +8,8 @@
 	"icons": [
 		{
 			"src": "Images/favicon.ico",
-			"sizes": "64x64",
-			"type": "image/png"
+			"sizes": "16x16",
+			"type": "image/x-icon"
 		}
 	]
 }
