@@ -310,8 +310,30 @@ let hardmode = false;
 
 const StartGameBtn = document.querySelector('#gameContainer button#start');
 StartGameBtn.addEventListener("click", function () {
+	clearInterval(gameInterval);
+	clearInterval(ballInterval);
+	gameInterval = null;
+	ballInterval = null;
+
+	// Reset all memory game state
 	level = 1;
 	lives = 3;
+	index = 0;
+	randomNumber = [];
+	velX = 20;
+	velY = 20;
+	ballX = 0;
+	ballY = 0;
+	awaitingName = false;
+
+	header1.innerHTML = "";
+	para.style.display = "";
+	SubmitAnswer.value = "";
+	SubmitAnswer.readOnly = true;
+	SubmitAnswer.placeholder = "";
+	SubmitAnswerBtn.disabled = true;
+	SubmitAnswerBtn.innerHTML = "Submit Answer";
+	ball.style.display = "none";
 	reset();
 	game();
 });
@@ -342,6 +364,7 @@ const header1 = document.querySelector('#game h1');
 let awaitingName = false;
 const para = document.querySelector('#game p');
 let gameInterval = null;
+let highScoreList = [];
 function game() {
 	if(hardmode) {
 		clearInterval(ballInterval);
@@ -351,7 +374,9 @@ function game() {
 		clearInterval(ballInterval);
 		ball.style.display = "none";
 	}
+	awaitingName = false;
 	StartGameBtn.disabled = true;
+	SubmitAnswerBtn.disabled = true;
 	SubmitAnswer.placeholder = "";
 	randomNumber = [];
 	index = 0;
@@ -364,9 +389,11 @@ function game() {
 	index++;
 	SubmitAnswer.readOnly = true;
 	gameInterval = setInterval(function () {
+		
 		if (index < randomNumber.length) {
 			header1.innerHTML = randomNumber[index];
 			index++;
+			
 		}
 		else {
 			clearInterval(gameInterval);
@@ -415,6 +442,8 @@ function checkAnswer() {
 	else {
 		level++;
 	}
+	SubmitAnswerBtn.disabled = true;
+	StartGameBtn.disabled = true;
 	header1.innerHTML = isCorrect ? "You win" : "You Lose";
 	SubmitAnswer.value = "";
 	if (lives > 0) {
@@ -424,11 +453,13 @@ function checkAnswer() {
 	}
 	else {
 		header1.innerHTML = "Game Over";
+		SubmitAnswerBtn.disabled = false;
+		StartGameBtn.disabled = false;
 		SubmitAnswer.readOnly = false;
 		SubmitAnswer.value = "";
 		SubmitAnswer.placeholder = "Input Name";
 		awaitingName = true;
-		StartGameBtn.disabled = false;
+		
 	}
 }
 
@@ -444,9 +475,18 @@ function changeHeart() {
 }
 let highScore = document.querySelector("div#highscore > ul");
 function updateLeaderboard(name, score) {
-	let li = document.createElement('li');
-	li.innerHTML = `${name}: ${score}`;
-	highScore.append(li);
+
+	highScoreList.push({name: name, score:score});
+	highScoreList.sort(function(a, b){
+		return b.score - a.score;
+	});
+	highScore.innerHTML = " ";
+	for(let entry of highScoreList) {
+		let li = document.createElement('li');
+		li.innerHTML = `${entry.name} : ${entry.score}`;
+		highScore.append(li);
+	}
+	
 }
 function ballAnim() {
 	if (hardmode) {
@@ -546,4 +586,5 @@ resetBtn.addEventListener('click', function() {
 	awaitingName = false;
 	SubmitAnswer.placeholder = "";
 	SubmitAnswerBtn.innerHTML = "Submit Answer";
+	highScoreList = [];
 });
